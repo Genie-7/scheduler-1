@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#calendar {
+  display: flex;
+  flex-direction: row;
+}
+#week-days {
+  display: flex;
+  flex-direction: column;
+}
+
+#times, #events {
+  display: flex;
+  flex-direction: row;
+}
+
+.week-day, .time, .event, .empty-week-day {
+  width: 100px;
+  height: 50px;
+  border: 1px solid black;
+  text-align: center;
+}
+.empty-week-day {
+  border: 0;
+}
