@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <div id="calendar">
-    <div id="week-days">
-      <div class="empty-week-day"></div>
-      <div class="week-day">Monday</div>
-      <div class="week-day">Tuesday</div>
-      <div class="week-day">Wednesday</div>
-      <div class="week-day">Thursday</div>
-      <div class="week-day">Friday</div>
-      <div class="week-day">Saturday</div>
-      <div class="week-day">Sunday</div>
-    </div>
-    <div id="times">
-      <div class="time">9:00</div>
-      <div class="time">10:00</div>
-      <div class="time">11:00</div>
-      <div class="time">12:00</div>
-      <div class="time">13:00</div>
-      <div class="time">14:00</div>
-      <div class="time">15:00</div>
-      <div class="time">16:00</div>
-      <div class="time">17:00</div>
-    </div>
-    <div id="events">
+  <h1>Calendar</h1>
+  <table id="calendar-table">
+  </table>
+  <button id="create-event">Create Event</button>
+  <div id="event-modal">
+    <!-- Modal content, including a form for adding event details -->
+    <div id="event-form">
+      <form>
+        <label for="event-name">Event Name:</label>
+        <input type="text" id="event-name" required>
+      
+        <label for="event-day">Event Day:</label>
+        <select id="event-day">
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select>
+      
+        <label for="event-time">Event Time:</label>
+        <select id="event-time">
+          <option value="9:00 AM">9:00 AM</option>
+          <option value="10:00 AM">10:00 AM</option>
+          <option value="11:00 AM">11:00 AM</option>
+          <option value="12:00 PM">12:00 PM</option>
+          <option value="1:00 PM">1:00 PM</option>
+          <option value="2:00 PM">2:00 PM</option>
+          <option value="3:00 PM">3:00 PM</option>
+          <option value="4:00 PM">4:00 PM</option>
+          <option value="5:00 PM">5:00 PM</option>
+        </select>
+      
+        <input type="submit" value="Create Event">
+      </form>
       
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
