@@ -1,28 +1,30 @@
-
+.header {
+  display: flex;
+  flex-direction: row;
+}
 table {
   border-collapse: collapse;
   width: 100%;
 }
-
 th, td {
   border: 1px solid black;
   text-align: center;
   padding: 8px;
 }
-
 th {
   background-color: lightgray;
 }
-
 #create-event {
-  margin-top: 20px;
+  margin: 20px 0 ;
   padding: 10px 20px;
   background-color: lightblue;
   color: white;
   border: none;
   border-radius: 5px;
 }
-
+#create-event:hover {
+  background-color: rgb(84, 84, 248);
+}
 #event-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -35,11 +37,47 @@ th {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
 #event-form {
   background-color: white;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid black;
   width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* drag and drop color change */
+.color-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.color {
+  width: 50px;
+  height: 35px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.red {
+  background-color: red;
+}
+.red:hover {
+  box-shadow: 1px 1px black;
+}
+.blue {
+  background-color: blue;
+}
+.blue:hover {
+  box-shadow: 1px 1px black;
+}
+.green {
+  background-color: green;
+}
+.green:hover {
+  box-shadow: 1px 1px black;
+}
+.remove {
+  background-color: white;
+  border: 1px solid black;
+
 }

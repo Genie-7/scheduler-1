@@ -7,9 +7,17 @@
 </head>
 <body>
   <h1>Calendar</h1>
+  <div class="header">
+    <button id="create-event">Create Event</button>
+    <main class="color-options">
+      <section class="color red" draggable="true"></section>
+      <section class="color blue" draggable="true"></section>
+      <section class="color green" draggable="true"></section>
+      <section id="remove" class="color remove" draggable="true"></section>
+    </main>
+  </div>
   <table id="calendar-table">
   </table>
-  <button id="create-event">Create Event</button>
   <div id="event-modal">
     <!-- Modal content, including a form for adding event details -->
     <div id="event-form">
