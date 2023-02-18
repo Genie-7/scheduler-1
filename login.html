@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        .center {
+          width: 400px;
+          margin: 0 auto;
+        }
+        </style>
+    <body>
+        <! login form>
+        <div class = "center">
+            <h2> Login </h2>
+            <form name="loginForm">
+                <label for="uname">Username:</label><br>
+                <input type="text" id="uname" name="username"><br>
+                <label for="Password">Password:</label><br>
+                <input type="password" id="Password" name="psw"><br><br>
+                <input type="button" name = "button" value="Submit"
+                    onClick="login(psw.value, username.value)">
+            </form>
+        </div>
+        <! Sign up form>
+        <br>
+        <div class = "center">
+            <h2> Sign up </h2>
+            <form action="/scheduler/db.js" method="post">
+                <label for="uname1">Username:</label><br>
+                <input type="text" id="uname1" name="username1"><br>
+                <label for="Password1">Password:</label><br>
+                <input type="password" id="Password1" name="psw1"><br>
+                <label for="Password2">Repeat Password:</label><br>
+                <input type="password" id="repeatPassword" name="rpsw"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <script>
+            //Test script to receive input through parameters from form login function call
+            //showing john doe calendar page once logged in
+            /*function login(pwd, uname){
+                //alert(uname+" "+pwd);
+                if(uname=="John"&&pwd=="Doe"){
+                    window.location=("index.html");
+                }
+                else{
+                    alert("Incorrect username");
+                }
+            }*/
+            function signup(uname, psw, rpsw){
+                //Express to tie all together
+                            }
+        </script>
+    </body>
+</html>
