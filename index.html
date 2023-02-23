@@ -1,59 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+  <script src='fullcalendar-scheduler-6.1.4\dist\index.global.js'></script>
+
+  <title>Scheduler</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Calendar</h1>
-  <div class="header">
-    <button id="create-event">Create Event</button>
-    <main class="color-options">
-      <section class="color red" draggable="true"></section>
-      <section class="color blue" draggable="true"></section>
-      <section class="color green" draggable="true"></section>
-      <section id="remove" class="color remove" draggable="true"></section>
-    </main>
-  </div>
-  <table id="calendar-table">
-  </table>
-  <div id="event-modal">
-    <!-- Modal content, including a form for adding event details -->
-    <div id="event-form">
-      <form>
-        <label for="event-name">Event Name:</label>
-        <input type="text" id="event-name" required>
-      
-        <label for="event-day">Event Day:</label>
-        <select id="event-day">
-          <option value="Sunday">Sunday</option>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-        </select>
-      
-        <label for="event-time">Event Time:</label>
-        <select id="event-time">
-          <option value="9:00 AM">9:00 AM</option>
-          <option value="10:00 AM">10:00 AM</option>
-          <option value="11:00 AM">11:00 AM</option>
-          <option value="12:00 PM">12:00 PM</option>
-          <option value="1:00 PM">1:00 PM</option>
-          <option value="2:00 PM">2:00 PM</option>
-          <option value="3:00 PM">3:00 PM</option>
-          <option value="4:00 PM">4:00 PM</option>
-          <option value="5:00 PM">5:00 PM</option>
-        </select>
-      
-        <input type="submit" value="Create Event">
-      </form>
-      
-    </div>
-  </div>
-  <script src="index.js"></script>
+  <div id='calendar'></div>
 </body>
+<script src="index.js"></script>
 </html>

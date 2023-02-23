@@ -1,0 +1,383 @@
+html:
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Calendar</h1>
+    <div class="header">
+      <button id="create-event">Create Event</button>
+      <div id="notification" class="hidden">Event Created Successfully!</div>
+      <main class="color-options">
+        <section class="color red" draggable="true"></section>
+        <section class="color blue" draggable="true"></section>
+        <section class="color green" draggable="true"></section>
+        <section id="remove" class="color remove" draggable="true"></section>
+      </main>
+    </div>
+    <h3 style="text-align:center">Feb 12 - 18</h3>
+    <table id="calendar-table"></table>
+    <div id="event-modal">
+      <!-- Modal content, including a form for adding event details -->
+      <div id="event-form">
+        <form>
+          <label for="event-name">Event Name:</label>
+          <input type="text" id="event-name" required />
+          <label for="event-day">Event Day:</label>
+          <select id="event-day">
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
+
+          <label for="event-time">Event Time:</label>
+          <select id="event-time">
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="9:00 AM">9:30 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="10:00 AM">10:30 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="11:00 AM">11:30 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="12:00 PM">12:30 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="1:00 PM">1:30 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="2:00 PM">2:30 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="3:00 PM">3:30 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+            <option value="4:00 PM">4:30 PM</option>
+            <option value="5:00 PM">5:00 PM</option>
+            <option value="5:00 PM">5:30 PM</option>
+          </select>
+
+          <input type="submit" value="Create Event" />
+        </form>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
+
+
+
+
+js:
+// // Create an array of weekdays
+// var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+// // Create an array of times
+// var times = ["", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
+
+// // Get the table element
+// var table = document.getElementById("calendar-table");
+// var btn = document.getElementById("create-event");
+// btn.onclick = function () {
+//   console.log("clicked");
+// };
+
+// // Create the header row with weekdays
+// var headerRow = table.insertRow(0);
+// for (var i = 0; i < times.length; i++) {
+//   var headerCell = headerRow.insertCell(i);
+//   // headerCell.innerHTML = weekdays[i];
+//   headerCell.innerHTML = times[i];
+
+// }
+
+// // Create the remaining rows with times and slots
+// for (var i = 0; i < weekdays.length; i++) {
+//   var timeRow = table.insertRow(i + 1);
+//   var timeCell = timeRow.insertCell(0);
+//   timeCell.innerHTML = weekdays[i];
+//   for (var j = 0; j < times.length -1; j++) {
+//     var slotCell = timeRow.insertCell(j + 1);
+//     slotCell.innerHTML = "&nbsp;"; // Add a non-breaking space to the cell
+//   }
+// }
+
+// document.querySelector("form").addEventListener("submit", function(event) {
+//   event.preventDefault(); // prevent the form from submitting
+
+//   // Get the values of the form inputs
+//   var eventName = document.getElementById("event-name").value;
+//   var eventDay = document.getElementById("event-day").value;
+//   var eventTime = document.getElementById("event-time").value;
+
+//   // Get the index of the selected day and time
+//   var dayIndex = weekdays.indexOf(eventDay);
+//   var timeIndex = times.indexOf(eventTime);
+
+//   // Get the cell for the selected day and time
+//   var eventCell = table.rows[dayIndex + 1].cells[timeIndex + 1];
+
+//   // Add the event name to the cell
+//   eventCell.innerHTML = eventName;
+// });
+
+// Create an array of weekdays
+var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+// Create an array of times
+var times = ["", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM"];
+
+// Get the table element
+var table = document.getElementById("calendar-table");
+
+// Get the create event button and add an event listener to it3
+var modalSubmitEvent = document.getElementById("modal-submit-event");
+var notification = document.getElementById("notification");
+
+
+var createEventButton = document.getElementById("create-event");
+createEventButton.addEventListener("click", function () {
+  // Show the modal when the button is clicked
+  document.getElementById("event-modal").style.display = "block";
+  // click outside the modal to close it
+  window.onclick = function (event) {
+    if (event.target == document.getElementById("event-modal")) {
+      document.getElementById("event-modal").style.display = "none";
+    }
+  }
+});
+
+// Get the event form
+var eventForm = document.querySelector("#event-form form");
+
+// Add a submit event listener to the form
+eventForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the form from submitting
+
+  // Get the values of the event name, day, and time inputs
+  var eventName = document.querySelector("#event-name").value;
+  var eventDayIndex = document.querySelector("#event-day").selectedIndex;
+  var eventDay = weekdays[eventDayIndex];
+  console.log(eventDay);
+  var eventTimeIndex = document.querySelector("#event-time").selectedIndex + 1;
+  var eventTime = times[eventTimeIndex];
+
+  // Get the cell for the event day and time
+  var eventCell = table.rows[eventDayIndex + 1].cells[eventTimeIndex];
+  // Add the event name to the cell and a template literal line break
+  eventCell.innerHTML += eventName;
+  // Hide the modal
+  document.getElementById("event-modal").style.display = "none";
+
+  // 
+
+  // save the event to local storage after the form is submitted
+  var event = {
+    name: eventName,
+    day: eventDay,
+    time: eventTime
+  };
+  // check if the event is already in the localStorage if not add it
+  var events = JSON.parse(localStorage.getItem("events")) || [];
+  if (events.length) {
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].name === event.name && events[i].day === event.day && events[i].time === event.time) {
+        return;
+      }
+    }
+  }
+  events.push(event);
+  localStorage.setItem("events", JSON.stringify(events));
+
+
+  notification.classList.remove("hidden");
+  setTimeout(function () {
+    notification.classList.add("hidden");
+  }, 2000);
+});
+
+// Create the header row with weekdays
+var headerRow = table.insertRow(0);
+for (var i = 0; i < times.length; i++) {
+  var headerCell = headerRow.insertCell(i);
+  headerCell.innerHTML = times[i];
+}
+
+// Create the remaining rows with times and slots
+for (var i = 0; i < weekdays.length; i++) {
+  var timeRow = table.insertRow(i + 1);
+  var timeCell = timeRow.insertCell(0);
+  timeCell.innerHTML = weekdays[i];
+  for (var j = 0; j < times.length - 1; j++) {
+    var slotCell = timeRow.insertCell(j + 1);
+    slotCell.innerHTML = "&nbsp;"; // Add a non-breaking space to the cell
+  }
+}
+
+// drag and drop color change
+
+var colorOptions = document.querySelectorAll(".color-options .color");
+var tableCells = document.querySelectorAll("#calendar-table td");
+var removeOption = document.getElementById("remove-option");
+
+// Loop through the color options and add an event listener to each one
+for (var i = 0; i < colorOptions.length; i++) {
+  var colorOption = colorOptions[i];
+
+  colorOption.addEventListener("dragstart", function (event) {
+    // Set the data type and data for the drag operation
+    event.dataTransfer.setData("text/plain", this.classList[1]);
+  });
+}
+
+// Loop through the table cells and add an event listener to each one
+for (var i = 0; i < tableCells.length; i++) {
+  var tableCell = tableCells[i];
+
+  tableCell.addEventListener("dragover", function (event) {
+    event.preventDefault(); // Allow the drag operation to drop on the table cell
+  });
+
+  tableCell.addEventListener("drop", function (event) {
+    var colorClass = event.dataTransfer.getData("text/plain");
+    // checks if the element has a background color
+    if (this.classList.length > 0) {
+      // if it does, remove the background color
+      this.className = "";
+    }
+    this.classList.add(colorClass); // Add the color class to the table cell
+    event.preventDefault(); // Prevent the browser from opening the data as a link
+    // store the color of the event in local storage along with the event name, day, and time
+    var eventName = this.innerHTML;
+    var eventDay = this.parentNode.children[0].innerHTML;
+    var eventTime = this.parentNode.parentNode.children[0].children[this.cellIndex].innerHTML;
+    var event = {
+      name: eventName,
+      day: eventDay,
+      time: eventTime,
+      color: colorClass
+    };
+    events.push(event);
+    localStorage.setItem("categorized", JSON.stringify(events));
+    console.log(event);
+
+  });
+}
+
+// getItems from local storage and display them on the page when the page loads for the first time or when the page is refreshed
+var events = JSON.parse(localStorage.getItem("events")) || [];
+for (var i = 0; i < events.length; i++) {
+  var event = events[i];
+  var dayIndex = weekdays.indexOf(event.day);
+  var timeIndex = times.indexOf(event.time);
+  var eventCell = table.rows[dayIndex + 1].cells[timeIndex];
+  eventCell.innerHTML = event.name;
+}
+
+var categorized = JSON.parse(localStorage.getItem("categorized")) || [];
+for (var i = 0; i < categorized.length; i++) {
+  var event = categorized[i];
+  var dayIndex = weekdays.indexOf(event.day);
+  var timeIndex = times.indexOf(event.time);
+  var eventCell = table.rows[dayIndex + 1].cells[timeIndex];
+  eventCell.innerHTML = event.name;
+}
+
+
+
+css:
+.header {
+  display: flex;
+  flex-direction: row;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 8px;
+}
+th {
+  background-color: lightgray;
+}
+#create-event {
+  margin: 20px 0 ;
+  padding: 10px 20px;
+  background-color: lightblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+#create-event:hover {
+  background-color: rgb(84, 84, 248);
+}
+#event-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#event-form {
+  background-color: white;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid black;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* drag and drop color change */
+.color-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.color {
+  width: 50px;
+  height: 35px;
+  margin: 10px;
+  border-radius: 10px;
+}
+.red {
+  background-color: red;
+}
+.red:hover {
+  box-shadow: 1px 1px black;
+}
+.blue {
+  background-color: rgb(96, 96, 247);
+}
+.blue:hover {
+  box-shadow: 1px 1px black;
+}
+.green {
+  background-color: green;
+}
+.green:hover {
+  box-shadow: 1px 1px black;
+}
+.remove {
+  background-color: white;
+  border: 1px solid black;
+}
+#notification {
+  position: absolute;
+  top: 55px;
+  left: 450px;
+  padding: 10px;
+  background-color: rgb(74, 171, 250);
+  color: white;
+  border-radius: 5px;
+}
+.hidden {
+  display: none;
+}
