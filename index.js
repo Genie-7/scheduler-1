@@ -109,29 +109,36 @@ document.addEventListener('DOMContentLoaded', function() {
     select: function (arg) {
       var title = prompt('Event Title:');
       if (title) {
+        var color = prompt('Initial Event Color:');
         CalendarPortrait.addEvent({
           id: title,
           title: title,
           start: arg.start,
           end: arg.end,
           allDay: arg.allDay,
-          eventColor: '#373006',
-        })
-      }          
-      CalendarPortrait.unselect()
+          backgroundColor: color,
+        });
+        // onclick again to change color
+        CalendarPortrait.on('eventClick', function (info) {
+          var newColor = prompt('Event Color:');
+          if (newColor !== null) {
+            info.event.setProp('backgroundColor', newColor);
+          }
+        });
+      }
+      CalendarPortrait.unselect();
     }, 
   });
   CalendarPortrait.render();
 
   var calendarEl_Landscape = document.getElementById('calendar_Lands');
-
   CalendarLandscape = new FullCalendar.Calendar(calendarEl_Landscape, {
     timeZone: 'UTC',
     initialView: 'resourceTimelineWeek',
     height: 'auto',
     width: 'auto',
     headerToolbar: {
-      left: 'prev,next',
+      left: 'prev,next today',
       center: 'title',
       right: 'resourceTimelineDay,resourceTimelineWeek,resourceTimelineMonth'
     },
@@ -141,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resourceAreaHeaderContent: 'Days',
     resources: [
       // days of the week
-      { class:'days', id: 'a', title: 'Monday' },
+      { class:'days', id: 'a', title: 'Monday'},
       { class:'days', id: 'b', title: 'Tuesday' },
       { class:'days', id: 'c', title: 'Wednesday' },
       { class:'days', id: 'd', title: 'Thursday' },
@@ -149,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { class:'days', id: 'f', title: 'Saturday' },
       { class:'days', id: 'g', title: 'Sunday' }
     ],
+
     select: function (arg) {
       var title = prompt('Event Title:');
       if (title) {
