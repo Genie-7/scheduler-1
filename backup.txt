@@ -1,0 +1,13 @@
+    // select: function (arg) {
+    //   var title = prompt('Event Title:');
+    //   if (title) {
+    //     CalendarLandscape.addEvent({
+    //       title: title,
+    //       start: arg.start,
+    //       end: arg.end,
+    //       allDay: arg.allDay,
+    //       resourceId: arg.resource.id // Assign the event to the selected day
+    //     })
+    //   }
+    //   CalendarLandscape.unselect()
+    // }

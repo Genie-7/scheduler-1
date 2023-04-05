@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-  width: 75%;
+  width: 85%;
   margin: 40px auto;
 }
 
@@ -27,8 +27,8 @@ body {
   height: 85px;
 }
 
-.fc-timeline-body tbody tr td {
-}
+/* .fc-timeline-body tbody tr td {
+} */
 #calendar_Lands {
   display: none
 }

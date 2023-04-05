@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
-  <script src="fullcalendar-scheduler-6.1.4\dist\index.global.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-    integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  ></script>
-  <title>Calendar</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<div id='external-events'>
-  <p>
-    <strong>Draggable Events</strong>
-  </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js"></script>
+    <script src="fullcalendar-scheduler-6.1.4\dist\index.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <div id="external-events">
+    <p>
+      <strong>Draggable Events</strong>
+    </p>
 
-  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-    <div class='fc-event-main'>Work</div>
+    <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
+      <div class="fc-event-main">Work</div>
+    </div>
+    <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
+      <div class="fc-event-main">Meeting</div>
+    </div>
+    <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
+      <div class="fc-event-main">School</div>
+    </div>
+    <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
+      <div class="fc-event-main">Event</div>
+    </div>
+    <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event">
+      <div class="fc-event-main">Task</div>
+    </div>
   </div>
-  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-    <div class='fc-event-main'>Meeting</div>
-  </div>
-  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-    <div class='fc-event-main'>School</div>
-  </div>
-  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-    <div class='fc-event-main'>Event</div>
-  </div>
-  <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-    <div class='fc-event-main'>Task</div>
-  </div>
-</div>
-<body>
-  <button style="float: right;" onclick="toggleView()">Change View</button>
-  <div id='calendar_Por' onclick="checkEvent()"></div>
-  <div id='calendar_Lands'></div>
-</body>
-<script src="index.js"></script>
+  <body>
+    <button style="float: right" onclick="toggleView()">Change View</button>
+    <div id="calendar_Por" onclick="checkEvent()"></div>
+    <div id="calendar_Lands"></div>
+
+    <div>
+      <h3>Categories:</h3>
+      <div id="category-list">
+        <!-- Existing categories will be listed here -->
+      </div>
+      <h3>Add Category:</h3>
+      <input type="text" id="new-category" placeholder="Enter category name" />
+      <button onclick="addCategory()">Add</button>
+    </div>
+    
+  </body>
+  <script src="index.js"></script>
 </html>
